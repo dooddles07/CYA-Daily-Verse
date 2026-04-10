@@ -9,17 +9,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --deep: #1a1035;
-      --mid: #2d1f5e;
-      --text: #f5f0e8;
-      --muted: #b0a8c4;
+      --accent: #4a90d9;
+      --accent-light: #7ab3ef;
+      --deep: #0a1628;
+      --mid: #122a4e;
+      --text: #ffffff;
+      --muted: #a0b8d8;
     }
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 50%, #1e3a5f 100%);
+      background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 50%, #1a3a6b 100%);
       font-family: 'Inter', sans-serif;
       color: var(--text);
       display: flex;
@@ -41,7 +41,7 @@
         radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.25) 0%, transparent 100%),
         radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
         radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
-        radial-gradient(2px 2px at 60% 40%, rgba(201,168,76,0.3) 0%, transparent 100%);
+        radial-gradient(2px 2px at 60% 40%, rgba(74,144,217,0.3) 0%, transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -62,11 +62,12 @@
       text-align: center;
     }
 
-    .cross-icon {
-      font-size: 2rem;
+    .logo {
+      width: 72px;
+      height: 72px;
       margin-bottom: 8px;
-      display: block;
-      filter: drop-shadow(0 0 12px rgba(201,168,76,0.6));
+      object-fit: contain;
+      filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255,255,255,0.4));
     }
 
     .org-name {
@@ -74,7 +75,7 @@
       font-weight: 500;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent-light);
       margin-bottom: 6px;
     }
 
@@ -87,7 +88,7 @@
     }
 
     h1 span {
-      color: var(--gold-light);
+      color: var(--accent-light);
     }
 
     .subtitle {
@@ -101,7 +102,7 @@
     .verse-card {
       width: 100%;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(201, 168, 76, 0.25);
+      border: 1px solid rgba(74, 144, 217, 0.25);
       border-radius: 20px;
       padding: 40px 36px;
       backdrop-filter: blur(12px);
@@ -125,7 +126,7 @@
       left: 20px;
       font-family: 'Playfair Display', serif;
       font-size: 10rem;
-      color: rgba(201, 168, 76, 0.08);
+      color: rgba(74, 144, 217, 0.08);
       line-height: 1;
       pointer-events: none;
     }
@@ -153,9 +154,9 @@
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent-light);
       padding: 6px 16px;
-      border: 1px solid rgba(201, 168, 76, 0.35);
+      border: 1px solid rgba(74, 144, 217, 0.35);
       border-radius: 999px;
     }
 
@@ -167,8 +168,8 @@
 
     /* Button */
     .btn-verse {
-      background: linear-gradient(135deg, var(--gold) 0%, #a87c2a 100%);
-      color: #1a1035;
+      background: linear-gradient(135deg, var(--accent) 0%, #2a6ab8 100%);
+      color: #ffffff;
       border: none;
       border-radius: 999px;
       padding: 16px 48px;
@@ -178,7 +179,7 @@
       letter-spacing: 0.05em;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.35);
+      box-shadow: 0 4px 24px rgba(74, 144, 217, 0.35);
       position: relative;
       overflow: hidden;
     }
@@ -194,7 +195,7 @@
 
     .btn-verse:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.55);
+      box-shadow: 0 8px 32px rgba(74, 144, 217, 0.55);
       filter: brightness(1.08);
     }
 
@@ -202,52 +203,15 @@
 
     .btn-verse:active:not(:disabled) {
       transform: translateY(0px);
-      box-shadow: 0 2px 12px rgba(201, 168, 76, 0.3);
+      box-shadow: 0 2px 12px rgba(74, 144, 217, 0.3);
     }
 
-    .btn-verse:disabled {
-      background: linear-gradient(135deg, #5a5060 0%, #3a3045 100%);
-      color: var(--muted);
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    /* Daily limit indicator */
+    /* Daily verse row */
     .limit-row {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-    }
-
-    .verse-dots {
-      display: flex;
-      gap: 8px;
-    }
-
-    .verse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(201, 168, 76, 0.5);
-      background: transparent;
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-
-    .verse-dot.used {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .limit-text {
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-align: center;
-    }
-
-    .limit-text.exhausted {
-      color: var(--gold-light);
     }
 
     /* Share row */
@@ -287,13 +251,13 @@
     }
 
     .btn-copy:hover {
-      background: rgba(201, 168, 76, 0.15);
-      border-color: rgba(201, 168, 76, 0.4);
+      background: rgba(74, 144, 217, 0.15);
+      border-color: rgba(74, 144, 217, 0.4);
     }
 
     .btn-copy.copied {
-      color: var(--gold-light);
-      border-color: rgba(201, 168, 76, 0.6);
+      color: var(--accent-light);
+      border-color: rgba(74, 144, 217, 0.6);
     }
 
     /* Footer */
@@ -391,7 +355,7 @@
 <div class="container">
 
   <header class="header">
-    <span class="cross-icon">✝</span>
+    <img src="logo.png" alt="CYA Bicol logo" class="logo" />
     <p class="org-name">CYA Bicol</p>
     <h1>Your Daily <span>Verse</span></h1>
     <p class="subtitle">Let God's Word light up your day.</p>
@@ -408,11 +372,6 @@
 
   <div class="limit-row">
     <button class="btn-verse" id="verseBtn" onclick="showVerse()">✦ Daily Verse</button>
-    <div class="verse-dots">
-      <div class="verse-dot" id="dot1"></div>
-      <div class="verse-dot" id="dot2"></div>
-    </div>
-    <p class="limit-text" id="limitText">2 verses remaining today</p>
   </div>
 
   <footer>
@@ -538,60 +497,8 @@
     { text: "For God gave us a spirit not of fear but of power and love and self-control.", ref: "2 Timothy 1:7" },
   ];
 
-  const DAILY_LIMIT = 2;
-  const STORAGE_KEY = 'cyaBicolVerse';
-
-  function getTodayKey() {
-    return new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
-  }
-
-  function loadState() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return { date: null, count: 0, lastIndex: -1, lastVerse: null };
-      return JSON.parse(raw);
-    } catch { return { date: null, count: 0, lastIndex: -1, lastVerse: null }; }
-  }
-
-  function saveState(state) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
-
-  function getEffectiveState() {
-    const state = loadState();
-    const today = getTodayKey();
-    if (state.date !== today) {
-      return { date: today, count: 0, lastIndex: -1, lastVerse: null };
-    }
-    return state;
-  }
-
   let currentVerse = null;
-
-  function updateUI(count) {
-    const btn = document.getElementById('verseBtn');
-    const dot1 = document.getElementById('dot1');
-    const dot2 = document.getElementById('dot2');
-    const limitText = document.getElementById('limitText');
-    const remaining = DAILY_LIMIT - count;
-
-    dot1.classList.toggle('used', count >= 1);
-    dot2.classList.toggle('used', count >= 2);
-
-    if (remaining <= 0) {
-      btn.disabled = true;
-      btn.textContent = '✦ Come Back Tomorrow';
-      limitText.textContent = "You've received both verses for today. See you tomorrow!";
-      limitText.classList.add('exhausted');
-    } else {
-      btn.disabled = false;
-      btn.textContent = '✦ Daily Verse';
-      limitText.textContent = remaining === DAILY_LIMIT
-        ? `${remaining} verses remaining today`
-        : `${remaining} verse remaining today`;
-      limitText.classList.remove('exhausted');
-    }
-  }
+  let lastIndex = -1;
 
   function renderVerse(verse) {
     const card = document.getElementById('verseCard');
@@ -610,20 +517,12 @@
   }
 
   function showVerse() {
-    const state = getEffectiveState();
-    if (state.count >= DAILY_LIMIT) return;
-
     let idx;
-    do { idx = Math.floor(Math.random() * verses.length); } while (idx === state.lastIndex);
+    do { idx = Math.floor(Math.random() * verses.length); } while (idx === lastIndex);
 
     currentVerse = verses[idx];
-    state.count += 1;
-    state.lastIndex = idx;
-    state.lastVerse = currentVerse;
-    saveState(state);
-
+    lastIndex = idx;
     renderVerse(currentVerse);
-    updateUI(state.count);
   }
 
   function copyVerse() {
@@ -642,22 +541,6 @@
     btn.textContent = 'Copy verse';
     btn.classList.remove('copied');
   }
-
-  // On load: restore state
-  (function init() {
-    const state = getEffectiveState();
-    updateUI(state.count);
-    if (state.lastVerse) {
-      currentVerse = state.lastVerse;
-      // Restore last verse instantly without animation
-      const card = document.getElementById('verseCard');
-      card.innerHTML = `
-        <p class="verse-text">"${state.lastVerse.text}"</p>
-        <span class="verse-ref">${state.lastVerse.ref}</span>
-      `;
-      document.getElementById('shareRow').classList.add('visible');
-    }
-  })();
 </script>
 
 </body>
